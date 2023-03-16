@@ -1,0 +1,18 @@
+//abstracts
+
+@import "./sass/abstracts/mixins";
+@import "./sass/abstracts/variables";
+
+//base
+
+@import "./sass/base/animations";
+@import "./sass/base/base";
+@import "./sass/base/typography";
+@import "./sass/base/utilities";
+
+//components
+@import "./sass/components/mail";
+@import "./sass/components/statement";
+//layout
+//pages
+@import "./sass/pages/home";

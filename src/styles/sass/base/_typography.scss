@@ -1,0 +1,11 @@
+.header {
+  font-size: 7rem;
+  margin: 5rem;
+  color: rgba($primary-text-color, 0.7);
+  font-weight: 700;
+
+  @media screen and (max-width: $large) {
+    font-size: 5rem;
+    color: rgba($primary-text-color, 1);
+  }
+}
