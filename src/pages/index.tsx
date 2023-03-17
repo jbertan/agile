@@ -7,7 +7,6 @@ import { useState, useReducer } from "react";
 import { reducerFunctions, initialReducers } from "@/helper/reducer";
 import RadarContainer from "@/components/radarcontainer";
 import Pagination from "@mui/material/Pagination";
-import HubSpot from "@/helper/hubspot";
 
 const inter = Inter({ subsets: ["latin"] });
 
