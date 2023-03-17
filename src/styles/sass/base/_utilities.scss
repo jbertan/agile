@@ -7,6 +7,10 @@
   align-self: center;
   margin: 4rem 0;
 }
+.top-margin {
+  align-self: center;
+  margin: 4rem 0;
+}
 
 //slider thumb color
 .MuiSlider-thumb {
@@ -26,6 +30,15 @@
   @media only screen and (max-width: 400px) {
     font-size: small !important;
   }
+}
+//pagination next pğrevious item
+.MuiPaginationItem-previousNext {
+  //background-color: rgb(109, 148, 122) !important;
+}
+
+//pagination selected
+.Mui-selected {
+  background-color: $primary-alert-color !important;
 }
 
 .button {

@@ -5,12 +5,15 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { _categories } from "@/helper/database";
 interface props {
-  setResultArray: (e: { categories: _categories; value: number }[]) => void;
+  setResultArray: (
+    e: { categories: _categories; value: number; statement: string }[]
+  ) => void;
   indexArray: number;
-  resultArray: { categories: _categories; value: number }[];
+  resultArray: { categories: _categories; value: number; statement: string }[];
   categories: _categories;
   dispatch: any;
   tasks: any;
+  statement: string;
 }
 const SliderComponent = ({
   resultArray,
@@ -19,6 +22,7 @@ const SliderComponent = ({
   categories,
   dispatch,
   tasks,
+  statement,
 }: props) => {
   let tempArr = [...resultArray];
   const marks = [
@@ -56,12 +60,9 @@ const SliderComponent = ({
       label: "Agree",
     },
   ];
-  /* useEffect(() => {
-    tempArr[indexArray] = { categories, value: 5 };
-    setResultArray(tempArr);
-  }, []); */
+
   const changeHandler = (value: number) => {
-    tempArr[indexArray] = { categories, value };
+    tempArr[indexArray] = { categories, value, statement };
     setResultArray(tempArr);
   };
   function valuetext(value: number) {

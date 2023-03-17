@@ -12,6 +12,17 @@ import {
 interface props {
   tasks: any;
 }
+interface ChartProps {
+  data: any;
+  options: {
+    scale?: {
+      ticks?: {
+        min?: number;
+        max?: number;
+      };
+    };
+  };
+}
 const RadarComponent = ({ tasks }: props) => {
   ChartJS.register(
     RadialLinearScale,
@@ -91,7 +102,14 @@ const RadarComponent = ({ tasks }: props) => {
     const result = total / length;
     return result;
   };
-
+  const options = {
+    scales: {
+      r: {
+        min: 0,
+        max: 10,
+      },
+    },
+  };
   const data = {
     labels: [
       "Discovery",
@@ -120,6 +138,6 @@ const RadarComponent = ({ tasks }: props) => {
       },
     ],
   };
-  return <Radar data={data} />;
+  return <Radar data={data} options={options} />;
 };
 export default RadarComponent;
