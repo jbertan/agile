@@ -7,6 +7,7 @@ import { useState, useReducer } from "react";
 import { reducerFunctions, initialReducers } from "@/helper/reducer";
 import RadarContainer from "@/components/radarcontainer";
 import Pagination from "@mui/material/Pagination";
+import HubSpot from "@/helper/hubspot";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,12 +18,14 @@ export default function Home() {
   const [page, setPage] = useState<number>(1);
   const [resultArray, setResultArray] = useState<
     {
+      statement: string;
       categories: _categories;
       value: number;
     }[]
   >([]);
 
   const resultHandler = () => {
+    //console.log(resultArray);
     resultArray.map((res) => {
       if (res) {
         dispatch({ type: res.categories, payload: res.value });
@@ -56,7 +59,9 @@ export default function Home() {
     }
     return renderItems;
   };
-  console.log(tasks);
+
+  //Test all slider movements with dispatchs
+  //console.log(tasks);
 
   return (
     <>

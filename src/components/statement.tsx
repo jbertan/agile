@@ -4,9 +4,11 @@ import { _categories } from "@/helper/database";
 
 interface props {
   statement: string;
-  setResultArray: (e: { categories: _categories; value: number }[]) => void;
+  setResultArray: (
+    e: { categories: _categories; value: number; statement: string }[]
+  ) => void;
   indexArray: number;
-  resultArray: { categories: _categories; value: number }[];
+  resultArray: { categories: _categories; value: number; statement: string }[];
   categories: _categories;
   dispatch: any;
   tasks: any;
@@ -24,6 +26,7 @@ const StatementComponent = ({
     <div className="statement">
       <div className="statement--label">{statement}</div>
       <SliderComponent
+        statement={statement}
         resultArray={resultArray}
         indexArray={indexArray}
         setResultArray={setResultArray}
