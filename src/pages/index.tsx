@@ -7,7 +7,6 @@ import { useState, useReducer } from "react";
 import { reducerFunctions, initialReducers } from "@/helper/reducer";
 import RadarContainer from "@/components/radarcontainer";
 import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +15,6 @@ export default function Home() {
   const [mail, setMail] = useState<string>("");
   const [tasks, dispatch] = useReducer(reducerFunctions, initialReducers);
   const [page, setPage] = useState<number>(1);
-
   const [resultArray, setResultArray] = useState<
     {
       categories: _categories;
@@ -35,6 +33,7 @@ export default function Home() {
   const submitHandler = (e: string) => {
     setMail(e);
   };
+
   const renderItems = () => {
     const pageByItems = 5;
     const renderItems = [];
@@ -58,6 +57,7 @@ export default function Home() {
     return renderItems;
   };
   console.log(tasks);
+
   return (
     <>
       <Head>
