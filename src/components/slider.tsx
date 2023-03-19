@@ -24,6 +24,9 @@ const SliderComponent = ({
   tasks,
   statement,
 }: props) => {
+  console.log(
+    resultArray[indexArray] === undefined ? 50 : resultArray[indexArray].value
+  );
   let tempArr = [...resultArray];
   const marks = [
     {
@@ -75,7 +78,11 @@ const SliderComponent = ({
         track="inverted"
         aria-labelledby="track-inverted-slider"
         getAriaValueText={valuetext}
-        defaultValue={50}
+        defaultValue={
+          resultArray[indexArray] === undefined
+            ? 50
+            : resultArray[indexArray].value * 10
+        }
         marks={marks}
         //@ts-ignore
         onChangeCommitted={(_, e) => changeHandler(Math.round(e / 10))}

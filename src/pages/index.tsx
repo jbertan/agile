@@ -7,6 +7,7 @@ import { useState, useReducer } from "react";
 import { reducerFunctions, initialReducers } from "@/helper/reducer";
 import RadarContainer from "@/components/radarcontainer";
 import Pagination from "@mui/material/Pagination";
+import { createContact, getContacts, shortCut } from "@/helper/hubspot";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,7 @@ export default function Home() {
     }[]
   >([]);
 
-  const resultHandler = () => {
+  const resultHandler = async () => {
     //console.log(resultArray);
     resultArray.map((res) => {
       if (res) {
@@ -31,6 +32,14 @@ export default function Home() {
       }
       setResult(!result);
     });
+    console.log(resultArray);
+    try {
+      const response = await createContact(resultArray, mail);
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
   const submitHandler = (e: string) => {
     setMail(e);

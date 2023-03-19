@@ -1,13 +1,13 @@
 .radar {
   background-color: $primary-background-color;
   position: fixed;
-  padding: 4rem 10rem;
+  padding: 2rem 5rem;
   top: 50vh;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 3px;
   width: 60rem;
-  height: 30rem;
+  height: 60rem;
   box-shadow: 1rem 1rem 2rem rgba($primary-text-color, 0.3);
   display: flex;
   flex-direction: column;
