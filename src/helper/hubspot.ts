@@ -35,7 +35,7 @@ export const getContacts = () => {
     });
 };
 export const shortCut = async () => {
-  const accessToken = process.env.HUB_ACCESS_TOKEN;
+  const accessToken = process.env.NEXT_PUBLIC_HUB_ACCESS_TOKEN;
   const hubspotApiUrl = "https://api.hubapi.com/crm/v3/objects/contacts";
   const hubspotClient = new Client({ accessToken: accessToken });
   const allContacts = await hubspotClient.crm.contacts.getAll();
