@@ -6,10 +6,10 @@ interface IresultItem {
   value: number;
 }
 const HubSpot = async (req: NextApiRequest, res: NextApiResponse) => {
-  const accessToken = process.env.HUB_ACCESS_TOKEN;
+  const accessToken = process.env.NEXT_PUBLIC_HUB_ACCESS_TOKEN;
   const hubspotApiUrl = "https://api.hubapi.com/crm/v3/objects/contacts";
   const hubspotClient = new Client({ accessToken: accessToken });
-  console.log(process.env.HUB_ACCESS_TOKEN);
+  console.log(process.env.NEXT_PUBLIC_HUB_ACCESS_TOKEN);
   console.log("No process Token from env");
 
   if (req.method === "POST") {
