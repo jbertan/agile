@@ -17,6 +17,7 @@
     padding: 1rem 5rem;
   }
   &--label {
+    font-family: var(--open-sans-font);
     font-size: 3rem;
     width: 50rem;
     @media only screen and (max-width: 900px) {
