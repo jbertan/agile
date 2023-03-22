@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
+import { Open_Sans, Inter, Montserrat } from "next/font/google";
 import StatementComponent from "@/components/statement";
 import MailComponent from "@/components/mail";
 import { datas, _categories } from "@/helper/database";
@@ -8,8 +8,16 @@ import { reducerFunctions, initialReducers } from "@/helper/reducer";
 import RadarContainer from "@/components/radarcontainer";
 import Pagination from "@mui/material/Pagination";
 import { createContact, getContacts, shortCut } from "@/helper/hubspot";
-
 const inter = Inter({ subsets: ["latin"] });
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--montserrat-font",
+});
+const open_sans = Open_Sans({
+  subsets: ["latin"],
+  variable: "--open-sans-font",
+});
 
 export default function Home() {
   const [result, setResult] = useState<boolean>(false);
@@ -79,7 +87,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="container">
+      <main
+        data-testid="heading"
+        className={`container ${montserrat.variable} ${open_sans.variable}`}
+      >
         {result ? (
           <RadarContainer tasks={tasks} />
         ) : mail ? (

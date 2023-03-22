@@ -20,16 +20,20 @@ const MailComponent = ({ setMail, dispatch }: props) => {
       <h3 className="mail__welcome">Welcome to agile analyses</h3>
       <div className="mail__input">
         <input
+          id="email"
           type="email"
           className="mail__input--input"
-          placeholder="email adresses"
+          placeholder="Enter your email"
           ref={inputRef}
+          data-testid="email input"
           required
         />
-        <label className="mail__input--label">email adresses</label>
+        <label htmlFor={"email"} className="mail__input--label">
+          Enter your email
+        </label>
       </div>
       <button className="button" onClick={submitHandler}>
-        Submit
+        Start
       </button>
     </div>
   );
