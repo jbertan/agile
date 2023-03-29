@@ -1,0 +1,107 @@
+.statements-holder {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: [first-start]20% [first-end second-start]45% [second-end third-start]25% [third-end];
+  overflow: hidden;
+  gap: 3rem;
+  padding: 0 1rem;
+  @media only screen and (max-width: $bp-midsmall) {
+    grid-template-rows: [first-start]30% [first-end second-start]30% [second-end third-start]35% [third-end];
+  }
+
+  &__start {
+    grid-row: first-start/first-end;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  &__startfilter {
+    mask-image: linear-gradient(to top, black 0%, transparent 100%);
+  }
+  &__mid {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    align-items: center;
+    grid-row: second-start/second-end;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+  }
+  &__end {
+    grid-row: third-start/third-end;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    //filter: blur(1px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  &__endfilter {
+    mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  }
+}
+.statement-component {
+  position: relative;
+  padding: 2rem;
+  padding-top: 3rem;
+  border: 8px solid rgb($primary-text-color, 0.1);
+  border-radius: 5rem;
+  box-shadow: 0rem 1rem 1rem rgb($primary-text-color, 0.4);
+  position: relative;
+  width: 100rem;
+  height: 100%;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  @media only screen and (max-width: $bp-midsmall) {
+    padding-top: 2rem;
+    border: 4px solid rgb($primary-text-color, 0.1);
+    box-shadow: 0rem 1rem 1rem rgb($primary-text-color, 0.3);
+  }
+  @media only screen and (max-width: $bp-midsmall) {
+    padding-top: 1rem;
+    border: 2px solid rgb($primary-text-color, 0.1);
+    box-shadow: 0rem 1rem 1rem rgb($primary-text-color, 0.2);
+  }
+  &__button {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    @media screen and (max-width: $bp-midsmall) {
+      bottom: 2rem;
+    }
+  }
+  &__statement {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__progress-bar {
+    position: absolute;
+    position: relative;
+    width: 5rem !important;
+    height: 5rem !important;
+    position: relative;
+
+    &__text {
+      font-size: 1.5rem !important;
+      rotate: -20deg;
+    }
+  }
+}

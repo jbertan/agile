@@ -1,10 +1,18 @@
+/* .MuiSlider-root {
+  :hover,
+  :active {
+    scale: 1.05;
+  }
+} */
 .statement {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 1rem 10rem;
+  padding: 1rem 5rem;
+
   :not(:last-child) {
     margin-right: 10rem;
   }
@@ -16,15 +24,7 @@
     }
     padding: 1rem 5rem;
   }
-  &--label {
-    font-family: var(--open-sans-font);
-    font-size: 3rem;
-    width: 50rem;
-    @media only screen and (max-width: 900px) {
-      text-align: center;
-      margin-top: 5rem;
-      margin-bottom: 1rem;
-      width: 60rem;
-    }
+  &__slider {
+    width: 300px;
   }
 }
