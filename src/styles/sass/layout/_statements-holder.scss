@@ -1,12 +1,16 @@
 .statements-holder {
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: [first-start]20% [first-end second-start]45% [second-end third-start]25% [third-end];
+  grid-template-rows:
+    [first-start]20% [first-end second-start]minmax(35rem, 45%)
+    [second-end third-start]25% [third-end];
   overflow: hidden;
   gap: 3rem;
   padding: 0 1rem;
   @media only screen and (max-width: $bp-midsmall) {
-    grid-template-rows: [first-start]30% [first-end second-start]30% [second-end third-start]35% [third-end];
+    grid-template-rows:
+      [first-start]30% [first-end second-start]minmax(45rem, 30%)
+      [second-end third-start]35% [third-end];
   }
 
   &__start {
