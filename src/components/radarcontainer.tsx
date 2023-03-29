@@ -14,6 +14,9 @@ const RadarContainer = ({ tasks }: props) => {
       <button className="button" onClick={nextHandler}>
         Next &rArr;
       </button>
+      <p className="radar__warnings">
+        You are being redirected to the agileonrails.com.
+      </p>
     </div>
   );
 };

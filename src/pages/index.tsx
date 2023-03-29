@@ -3,11 +3,12 @@ import { Open_Sans, Inter, Montserrat } from "next/font/google";
 import StatementComponent from "@/components/statement";
 import MailComponent from "@/components/mail";
 import { datas, _categories } from "@/helper/database";
-import { useState, useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
 import { reducerFunctions, initialReducers } from "@/helper/reducer";
 import RadarContainer from "@/components/radarcontainer";
 import Pagination from "@mui/material/Pagination";
 import { createContact, getContacts, shortCut } from "@/helper/hubspot";
+import CircularProgressWithLabel from "@/components/circular-progress-with-label";
 const inter = Inter({ subsets: ["latin"] });
 
 const montserrat = Montserrat({
@@ -20,10 +21,11 @@ const open_sans = Open_Sans({
 });
 
 export default function Home() {
+  //const [items, setItems] = useState<any>([]);
   const [result, setResult] = useState<boolean>(false);
   const [mail, setMail] = useState<string>("");
   const [tasks, dispatch] = useReducer(reducerFunctions, initialReducers);
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(0);
   const [resultArray, setResultArray] = useState<
     {
       statement: string;
@@ -52,12 +54,15 @@ export default function Home() {
   const submitHandler = (e: string) => {
     setMail(e);
   };
-
-  const renderItems = () => {
-    const pageByItems = 5;
+  const changePage = () => {
+    setPage(page + 1);
+  };
+  // (1) Enable Pagination RENDER PER PAGE MATH
+  /*  const renderItems = () => {
+     const pageByItems = 5;
     const renderItems = [];
     const start = pageByItems * (page - 1);
-    const end = start + pageByItems;
+    const end = start + pageByItems; 
     const items = datas.map((data, i) => (
       <StatementComponent
         key={data.id}
@@ -69,12 +74,12 @@ export default function Home() {
         dispatch={dispatch}
         tasks={tasks}
       />
-    ));
-    for (let i = start; i < end; i++) {
+    ));*/
+  /*  for (let i = start; i < end; i++) {
       renderItems.push(items[i]);
-    }
-    return renderItems;
-  };
+    } 
+    return items;
+  };*/
 
   //Test all slider movements with dispatchs
   //console.log(tasks);
@@ -95,14 +100,93 @@ export default function Home() {
           <RadarContainer tasks={tasks} />
         ) : mail ? (
           <>
-            <h1 className="header">Agile Survey</h1>
-            {renderItems()}
+            <h1 className="header">Agile Maturity Assesment</h1>
+            <div className="statements-holder">
+              <div className="statements-holder__startfilter">
+                <div className="statements-holder__start">
+                  {datas.map((data, i) => {
+                    return (
+                      i < page && (
+                        <h3 key={i} className="statement-h3">
+                          {data.statement}
+                        </h3>
+                      )
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="statements-holder__mid">
+                {datas.map((data, i) => {
+                  return (
+                    i === page && (
+                      <div className="statement-component">
+                        <CircularProgressWithLabel
+                          className="statement-component__progress-bar"
+                          value={(i / (datas.length - 1)) * 100}
+                        />
+                        <div className="statement-component__statement">
+                          <StatementComponent
+                            key={data.id}
+                            statement={data.statement}
+                            setResultArray={setResultArray}
+                            indexArray={i}
+                            resultArray={resultArray}
+                            categories={data.categories}
+                            dispatch={dispatch}
+                            tasks={tasks}
+                            changePage={changePage}
+                          />
+                        </div>
+
+                        {datas.length - 1 !== i ? (
+                          (console.log(datas.length, i),
+                          (
+                            <button
+                              className="statement-component__button button-next"
+                              onClick={() => changePage()}
+                            >
+                              NEXT &rArr;
+                            </button>
+                          ))
+                        ) : (
+                          <button
+                            onClick={resultHandler}
+                            className="statement-component__button button-next "
+                          >
+                            Result &rArr;
+                          </button>
+                        )}
+                      </div>
+                    )
+                  );
+                })}
+              </div>{" "}
+              <div className="statements-holder__endfilter">
+                <div className="statements-holder__end">
+                  {datas.map((data, i) => {
+                    return (
+                      i > page && (
+                        <h3 key={i} className="statement-h3">
+                          {data.statement}
+                        </h3>
+                      )
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          /* (2)RENDER DIVIDED PER PAGINATION
+            {renderItems()} 
+             (3)RENDER RESULT BUTTON IF OAGE IS 7
             {page === 7 && (
               <button onClick={resultHandler} className="button right">
                 Result &rArr;
               </button>
-            )}
+            )} 
 
+           (4)PAGINATION BAR
             <Pagination
               className="top-margin"
               count={Math.ceil(35 / 5)}
@@ -110,9 +194,8 @@ export default function Home() {
               color="primary"
               onChange={(event, value) => setPage(value)}
               variant="outlined"
-            />
-          </>
-        ) : (
+            /> */
+
           <MailComponent setMail={submitHandler} dispatch={dispatch} />
         )}
       </main>

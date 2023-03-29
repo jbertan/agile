@@ -15,6 +15,7 @@
   align-items: flex-end;
 
   &__welcome {
+    font-family: var(--open-sans-font);
     align-self: flex-start;
     font-size: 3rem;
     font-weight: 500;
@@ -42,6 +43,7 @@
       transition: all 0.3s;
       &::placeholder {
         color: rgba($primary-text-color, 0.3);
+        font-family: var(--montserrat-font);
       }
       &:focus {
         border-bottom: 1px solid rgba($primary-alert-color, 1);
