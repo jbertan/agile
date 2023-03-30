@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import { FormEvent, PointerEventHandler } from "react";
 import { useRef } from "react";
 
 interface props {
@@ -8,11 +8,18 @@ interface props {
 
 const MailComponent = ({ setMail, dispatch }: props) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const submitHandler = () => {
-    const input = inputRef.current?.value!;
-    if (inputRef.current) {
-      setMail(input);
-      dispatch({ type: "mail", payload: input });
+  //@ts-ignore
+  const submitHandler = (e: PointerEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (
+      e.type === "pointerdown" &&
+      (e.pointerType === "touch" || e.pointerType === "mouse")
+    ) {
+      const input = inputRef.current?.value!;
+      if (inputRef.current) {
+        setMail(input);
+        dispatch({ type: "mail", payload: input });
+      }
     }
   };
   return (
@@ -32,11 +39,8 @@ const MailComponent = ({ setMail, dispatch }: props) => {
           Enter your email
         </label>
       </div>
-      <button
-        className="button"
-        onTouchStart={() => submitHandler()}
-        onClick={() => submitHandler()}
-      >
+
+      <button className="button" onPointerDown={submitHandler}>
         Start
       </button>
     </div>
