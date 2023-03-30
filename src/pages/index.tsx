@@ -10,6 +10,8 @@ import Pagination from "@mui/material/Pagination";
 import { createContact, getContacts, shortCut } from "@/helper/hubspot";
 import CircularProgressWithLabel from "@/components/circular-progress-with-label";
 import ScreenResolution from "@/components/screenresolution";
+import NextButton from "@/components/nextbutton";
+import PrevButton from "@/components/prevbutton";
 const inter = Inter({ subsets: ["latin"] });
 
 const montserrat = Montserrat({
@@ -23,6 +25,8 @@ const open_sans = Open_Sans({
 
 export default function Home() {
   //const [items, setItems] = useState<any>([]);
+  const [animationEndClass, setAnimationEndClass] = useState<string>("");
+  const [animationStartClass, setAnimationStartClass] = useState<string>("");
   const [result, setResult] = useState<boolean>(false);
   const [mail, setMail] = useState<string>("");
   const [tasks, dispatch] = useReducer(reducerFunctions, initialReducers);
@@ -57,6 +61,25 @@ export default function Home() {
   };
   const changePage = () => {
     setPage(page + 1);
+  };
+  const changePageBack = () => {
+    setPage(page - 1);
+  };
+  const triggerAnimation = () => {
+    console.log("triggerAnimation");
+    setAnimationStartClass("animateTop");
+    setTimeout(() => {
+      setAnimationStartClass("");
+      setAnimationEndClass("");
+    }, 500); // Reset the animation class after the animation duration (2s in this example)
+  };
+  const triggerAnimationNegative = () => {
+    console.log("triggerAnimationBottom");
+    setAnimationEndClass("animateBottom");
+    setTimeout(() => {
+      setAnimationStartClass("");
+      setAnimationEndClass("");
+    }, 500); // Reset the animation class after the animation duration (2s in this example)
   };
   // (1) Enable Pagination RENDER PER PAGE MATH
   /*  const renderItems = () => {
@@ -98,7 +121,7 @@ export default function Home() {
         data-testid="heading"
         className={`container ${montserrat.variable} ${open_sans.variable}`}
       >
-        <ScreenResolution />
+        {/*  <ScreenResolution /> */}
         {result ? (
           <RadarContainer tasks={tasks} />
         ) : mail ? (
@@ -106,11 +129,14 @@ export default function Home() {
             <h1 className="header">Agile Maturity Assesment</h1>
             <div className="statements-holder">
               <div className="statements-holder__startfilter">
-                <div className="statements-holder__start">
+                <div className={`statements-holder__start`}>
                   {datas.map((data, i) => {
                     return (
                       i < page && (
-                        <h3 key={i} className="statement-h3">
+                        <h3
+                          key={i}
+                          className={`statement-h3 ${animationStartClass} ${animationEndClass} `}
+                        >
                           {data.statement}
                         </h3>
                       )
@@ -144,17 +170,27 @@ export default function Home() {
                         {datas.length - 1 !== i ? (
                           (console.log(datas.length, i),
                           (
-                            <button
-                              className="statement-component__button button-next"
-                              onClick={() => changePage()}
-                            >
-                              NEXT &rArr;
-                            </button>
+                            <div className="statement-component__button">
+                              {page > 0 && (
+                                <PrevButton
+                                  changePageBack={changePageBack}
+                                  triggerAnimationNegative={
+                                    triggerAnimationNegative
+                                  }
+                                />
+                              )}
+                              <NextButton
+                                changePage={changePage}
+                                triggerAnimation={triggerAnimation}
+                              >
+                                Next
+                              </NextButton>
+                            </div>
                           ))
                         ) : (
                           <button
                             onClick={resultHandler}
-                            className="statement-component__button button-next "
+                            className="statement-component__button next-button "
                           >
                             Result &rArr;
                           </button>
@@ -165,7 +201,9 @@ export default function Home() {
                 })}
               </div>{" "}
               <div className="statements-holder__endfilter">
-                <div className="statements-holder__end">
+                <div
+                  className={`statements-holder__end ${animationStartClass} ${animationEndClass}`}
+                >
                   {datas.map((data, i) => {
                     return (
                       i > page && (
