@@ -1,12 +1,13 @@
 .container {
-  padding-left: calc(5rem + env(safe-area-inset-left));
-  padding-right: calc(5rem + env(safe-area-inset-right));
   height: 100vh;
-  padding-top: 2rem;
+  padding: 2rem 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media only screen and (max-width: $bp-midsmall) {
+    padding: 1rem 0rem;
+  }
   /* :not(:last-child) {
     margin-bottom: 2rem;
   } */
