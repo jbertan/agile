@@ -32,7 +32,7 @@ const MailComponent = ({ setMail, dispatch }: props) => {
           Enter your email
         </label>
       </div>
-      <button className="button" onClick={() => submitHandler()}>
+      <button className="button" role="button" onClick={() => submitHandler()}>
         Start
       </button>
     </div>
