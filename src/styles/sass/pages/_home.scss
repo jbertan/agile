@@ -1,6 +1,8 @@
 .container {
+  padding-left: calc(5rem + env(safe-area-inset-left));
+  padding-right: calc(5rem + env(safe-area-inset-right));
   height: 100vh;
-  padding: 2rem 5rem;
+  padding-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
