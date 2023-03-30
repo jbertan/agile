@@ -32,7 +32,11 @@ const MailComponent = ({ setMail, dispatch }: props) => {
           Enter your email
         </label>
       </div>
-      <button className="button" role="button" onClick={() => submitHandler()}>
+      <button
+        className="button"
+        onTouchStart={() => submitHandler()}
+        onClick={() => submitHandler()}
+      >
         Start
       </button>
     </div>
