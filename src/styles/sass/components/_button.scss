@@ -1,11 +1,16 @@
 .button {
   font-family: var(--open-sans-font);
-  padding: 1.5rem 2.5rem;
-  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   background-color: $primary-alert-color;
   color: $primary-background-color;
   border: none;
   border-radius: 5px;
+  padding: 1rem 1.6rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  outline: none;
   &:hover {
     box-shadow: 0rem 1rem 2rem rgba(black, 0.4);
   }
