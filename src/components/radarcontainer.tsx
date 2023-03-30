@@ -11,7 +11,7 @@ const RadarContainer = ({ tasks }: props) => {
   return (
     <div className="radar">
       <RadarComponent tasks={tasks} />
-      <button className="button" onClick={nextHandler}>
+      <button className="next-button" onClick={nextHandler}>
         Next &rArr;
       </button>
       <p className="radar__warnings">
