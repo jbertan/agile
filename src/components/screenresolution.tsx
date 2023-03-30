@@ -24,7 +24,7 @@ const ScreenResolution = () => {
   }, []);
 
   return (
-    <div className="header">
+    <div className="test__header">
       Current screen resolution: {resolution.width} x {resolution.height}
     </div>
   );
