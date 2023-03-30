@@ -39,11 +39,7 @@ const MailComponent = ({ setMail, dispatch }: props) => {
         </label>
       </div>
 
-      <button
-        className="button"
-        onClick={submitHandler}
-        onTouchStart={submitHandler}
-      >
+      <button className="button" onPointerDown={submitHandler}>
         Start
       </button>
     </div>
