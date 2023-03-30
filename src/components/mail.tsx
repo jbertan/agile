@@ -3,7 +3,7 @@ import { useRef } from "react";
 
 interface props {
   setMail: (input: string) => void;
-  dispatch: (e: any) => any;
+  dispatch: (action: { type: string; payload: string }) => void;
 }
 
 const MailComponent = ({ setMail, dispatch }: props) => {
