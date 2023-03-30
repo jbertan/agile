@@ -121,6 +121,13 @@ export default function Home() {
         data-testid="heading"
         className={`container ${montserrat.variable} ${open_sans.variable}`}
       >
+        <noscript>
+          <div className="text__warning">
+            This website requires JavaScript to function properly. Please enable
+            JavaScript in your browser settings.
+          </div>
+        </noscript>
+
         {/*  <ScreenResolution /> */}
         {result ? (
           <RadarContainer tasks={tasks} />
