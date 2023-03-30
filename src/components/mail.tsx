@@ -10,7 +10,6 @@ const MailComponent = ({ setMail, dispatch }: props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   //@ts-ignore
   const submitHandler = (e: PointerEvent<HTMLButtonElement>) => {
-    e.preventDefault();
     if (
       e.type === "pointerdown" &&
       (e.pointerType === "touch" || e.pointerType === "mouse")
@@ -40,7 +39,11 @@ const MailComponent = ({ setMail, dispatch }: props) => {
         </label>
       </div>
 
-      <button className="button" onPointerDown={submitHandler}>
+      <button
+        className="button"
+        onClick={submitHandler}
+        onTouchStart={submitHandler}
+      >
         Start
       </button>
     </div>
